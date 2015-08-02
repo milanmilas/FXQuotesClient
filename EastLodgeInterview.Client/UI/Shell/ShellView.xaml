@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="EastLodgeInterview.Client.UI.Shell.ShellView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:crosses="clr-namespace:EastLodgeInterview.Client.UI.Crosses"
+             xmlns:crossesvm="clr-namespace:EastLodgeInterview.Client.ViewModel.Crosses"
+             xmlns:client="clr-namespace:EastLodgeInterview.Client"
+             xmlns:quotes="clr-namespace:EastLodgeInterview.Client.UI.Quotes"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ContentPresenter Grid.Row="0" Content="{Binding Crosses, Mode=OneTime}">
+            <ContentPresenter.ContentTemplate>
+                <DataTemplate DataType="crossesvm:ICrossesViewModel">
+                    <crosses:CrossesView DataContext="{Binding Mode=OneWay}" />
+                </DataTemplate>
+            </ContentPresenter.ContentTemplate>
+        </ContentPresenter>
+
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="7" />
+
+        <ContentPresenter Grid.Row="2" Content="{Binding Quotes, Mode=OneTime}">
+            <ContentPresenter.ContentTemplate>
+                <DataTemplate DataType="quotesvm:IQuotesViewModel">
+                    <quotes:QuotesView DataContext="{Binding Mode=OneWay}" />
+                </DataTemplate>
+            </ContentPresenter.ContentTemplate>
+        </ContentPresenter>
+    </Grid>
+</UserControl>
